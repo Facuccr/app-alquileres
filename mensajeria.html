@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlkiFor - Mensajería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      :root {
+        --color-primary: #3490dc;
+        --color-primary-dark: #2779bd;
+        --color-accent: #6574cd;
+        --color-bg-light: #f8f8f8;
+        --color-bg-dark: #e2e8f0;
+      }
+
+      .bg-primary-custom {
+        background-color: var(--color-primary);
+      }
+      .text-primary-custom {
+        color: var(--color-primary);
+      }
+      .border-primary-custom {
+        border-color: var(--color-primary);
+      }
+      .bg-primary-dark-custom {
+        background-color: var(--color-primary-dark);
+      }
+      .bg-accent-custom {
+        background-color: var(--color-accent);
+      }
+      .bg-bg-light-custom {
+        background-color: var(--color-bg-light);
+      }
+      .bg-bg-dark-custom {
+        background-color: var(--color-bg-dark);
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: var(--color-bg-light);
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary-dark);
+      }
+
+      /* Estilos para burbujas de mensaje */
+      .message-bubble {
+        max-width: 75%;
+        padding: 0.75rem 1rem;
+        border-radius: 1.25rem;
+        word-wrap: break-word;
+      }
+
+      .message-bubble.sent {
+        background-color: var(--color-primary);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 0.25rem; /* Menos redondeado en una esquina */
+      }
+
+      .message-bubble.received {
+        background-color: var(--color-bg-dark);
+        color: #333;
+        align-self: flex-start;
+        border-bottom-left-radius: 0.25rem; /* Menos redondeado en una esquina */
+      }
+
+      .message-timestamp {
+        font-size: 0.75rem;
+        color: #6b7280; /* gris-500 */
+        margin-top: 0.25rem;
+      }
+
+      .message-container.sent .message-timestamp {
+        text-align: right;
+      }
+
+      .message-container.received .message-timestamp {
+        text-align: left;
+      }
+
+      /* Ajustes responsivos */
+      @media (max-width: 768px) {
+        .chat-layout {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          max-height: 200px; /* Limitar altura de la barra lateral en pantallas pequeñas */
+          border-right: none;
+          border-bottom: 1px solid #e5e7eb; /* gris-200 */
+        }
+        .chat-area {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans antialiased flex flex-col min-h-screen">
+    <nav class="bg-primary-custom text-white p-4 shadow-md">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold">AlkiFor Chat</a>
+        <div class="flex items-center space-x-4">
+          <a href="listings.html" class="hover:text-gray-200"
+            ><i class="fas fa-home"></i
+          ></a>
+          <a href="#" class="hover:text-gray-200"
+            ><i class="fas fa-user-circle"></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="container mx-auto mt-6 flex flex-grow bg-white rounded-lg shadow-xl overflow-hidden chat-layout"
+      style="min-height: 70vh"
+    >
+      <div
+        class="sidebar w-1/4 bg-gray-50 border-r border-gray-200 flex flex-col"
+      >
+        <div class="p-4 border-b border-gray-200">
+          <h3 class="text-xl font-semibold text-gray-800">Conversaciones</h3>
+        </div>
+        <div class="flex-grow overflow-y-auto custom-scrollbar">
+          <div
+            class="contact-item flex items-center p-4 border-b border-gray-100 hover:bg-gray-100 cursor-pointer transition duration-150 ease-in-out active-chat"
+            data-chat-id="chat_owner_1"
+            data-chat-name="Propietario de la Casa Moderna"
+          >
+            <img
+              src="https://placehold.co/40x40/6574cd/ffffff?text=P1"
+              alt="Avatar"
+              class="w-10 h-10 rounded-full mr-3"
+            />
+            <div>
+              <p class="font-semibold text-gray-800">
+                Propietario de la Casa Moderna
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                ¡Hola! Me interesa la propiedad...
+              </p>
+            </div>
+            <span
+              class="unread-indicator bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center ml-auto"
+              >2</span
+            >
+          </div>
+          <div
+            class="contact-item flex items-center p-4 border-b border-gray-100 hover:bg-gray-100 cursor-pointer transition duration-150 ease-in-out"
+            data-chat-id="chat_owner_2"
+            data-chat-name="Propietario del Apartamento"
+          >
+            <img
+              src="https://placehold.co/40x40/3490dc/ffffff?text=P2"
+              alt="Avatar"
+              class="w-10 h-10 rounded-full mr-3"
+            />
+            <div>
+              <p class="font-semibold text-gray-800">
+                Propietario del Apartamento
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                Ok, ¿cuándo podrías visitarla?
+              </p>
+            </div>
+            <span
+              class="unread-indicator hidden bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center ml-auto"
+              >0</span
+            >
+          </div>
+          <div
+            class="contact-item flex items-center p-4 border-b border-gray-100 hover:bg-gray-100 cursor-pointer transition duration-150 ease-in-out"
+            data-chat-id="chat_agent_1"
+            data-chat-name="Agente Inmobiliario Laura"
+          >
+            <img
+              src="https://placehold.co/40x40/2779bd/ffffff?text=A1"
+              alt="Avatar"
+              class="w-10 h-10 rounded-full mr-3"
+            />
+            <div>
+              <p class="font-semibold text-gray-800">
+                Agente Inmobiliario Laura
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                Revisaré la disponibilidad.
+              </p>
+            </div>
+            <span
+              class="unread-indicator hidden bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center ml-auto"
+              >0</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-area flex-1 flex flex-col">
+        <div
+          class="chat-header bg-white p-4 border-b border-gray-200 flex items-center"
+        >
+          <img
+            src="https://placehold.co/40x40/6574cd/ffffff?text=P1"
+            alt="Avatar del chat"
+            class="w-10 h-10 rounded-full mr-3"
+            id="chatHeaderAvatar"
+          />
+          <h3 class="text-xl font-semibold text-gray-800" id="chatHeaderName">
+            Propietario de la Casa Moderna
+          </h3>
+        </div>
+
+        <div
+          id="messagesContainer"
+          class="flex-1 p-6 overflow-y-auto custom-scrollbar flex flex-col space-y-4"
+        >
+          <div class="message-container received flex flex-col items-start">
+            <div class="message-bubble received">
+              ¡Hola! Me interesa mucho la casa moderna que tienes publicada.
+            </div>
+            <span class="message-timestamp">10:00 AM</span>
+          </div>
+          <div class="message-container sent flex flex-col items-end">
+            <div class="message-bubble sent">
+              Claro, ¿qué te gustaría saber?
+            </div>
+            <span class="message-timestamp">10:02 AM</span>
+          </div>
+          <div class="message-container received flex flex-col items-start">
+            <div class="message-bubble received">
+              ¿Está disponible para visitas este fin de semana?
+            </div>
+            <span class="message-timestamp">10:05 AM</span>
+          </div>
+        </div>
+
+        <div class="chat-input p-4 border-t border-gray-200 bg-gray-50">
+          <div class="flex items-center space-x-3">
+            <input
+              type="text"
+              id="messageInput"
+              placeholder="Escribe un mensaje..."
+              class="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-custom"
+            />
+            <button
+              id="sendMessageBtn"
+              class="bg-primary-custom text-white p-3 rounded-full hover:bg-primary-dark-custom transition duration-200 focus:outline-none focus:ring-2 focus:ring-primary-custom"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const messagesContainer = document.getElementById("messagesContainer");
+        const messageInput = document.getElementById("messageInput");
+        const sendMessageBtn = document.getElementById("sendMessageBtn");
+        const contactItems = document.querySelectorAll(".contact-item");
+        const chatHeaderName = document.getElementById("chatHeaderName");
+        const chatHeaderAvatar = document.getElementById("chatHeaderAvatar");
+
+        const chats = {
+          chat_owner_1: {
+            name: "Propietario de la Casa Moderna",
+            avatar: "https://placehold.co/40x40/6574cd/ffffff?text=P1",
+            messages: [
+              {
+                text: "¡Hola! Me interesa mucho la casa moderna que tienes publicada.",
+                type: "received",
+                timestamp: "10:00 AM",
+              },
+              {
+                text: "Claro, ¿qué te gustaría saber?",
+                type: "sent",
+                timestamp: "10:02 AM",
+              },
+              {
+                text: "¿Está disponible para visitas este fin de semana?",
+                type: "received",
+                timestamp: "10:05 AM",
+              },
+            ],
+            unread: 2,
+          },
+          chat_owner_2: {
+            name: "Propietario del Apartamento",
+            avatar: "https://placehold.co/40x40/3490dc/ffffff?text=P2",
+            messages: [
+              {
+                text: "Hola, me gustaría saber más sobre el apartamento.",
+                type: "received",
+                timestamp: "Ayer",
+              },
+              {
+                text: "Ok, ¿cuándo podrías visitarla?",
+                type: "sent",
+                timestamp: "Ayer",
+              },
+            ],
+            unread: 0,
+          },
+          chat_agent_1: {
+            name: "Agente Inmobiliario Laura",
+            avatar: "https://placehold.co/40x40/2779bd/ffffff?text=A1",
+            messages: [
+              {
+                text: "Hola, tengo una consulta sobre la propiedad X.",
+                type: "sent",
+                timestamp: "Hace 2 días",
+              },
+              {
+                text: "Revisaré la disponibilidad.",
+                type: "received",
+                timestamp: "Hace 2 días",
+              },
+            ],
+            unread: 0,
+          },
+        };
+
+        let currentChatId = "chat_owner_1";
+
+        const renderMessages = () => {
+          messagesContainer.innerHTML = "";
+          const currentChat = chats[currentChatId];
+
+          if (currentChat) {
+            currentChat.messages.forEach((msg) => {
+              const messageDiv = document.createElement("div");
+              messageDiv.classList.add(
+                "message-container",
+                "flex",
+                "flex-col",
+                msg.type === "sent" ? "items-end" : "items-start"
+              );
+
+              const bubbleDiv = document.createElement("div");
+              bubbleDiv.classList.add("message-bubble", msg.type);
+              bubbleDiv.textContent = msg.text;
+
+              const timestampSpan = document.createElement("span");
+              timestampSpan.classList.add("message-timestamp");
+              timestampSpan.textContent = msg.timestamp;
+
+              messageDiv.appendChild(bubbleDiv);
+              messageDiv.appendChild(timestampSpan);
+              messagesContainer.appendChild(messageDiv);
+            });
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+        };
+
+        const updateChatHeader = () => {
+          const currentChat = chats[currentChatId];
+          if (currentChat) {
+            chatHeaderName.textContent = currentChat.name;
+            chatHeaderAvatar.src = currentChat.avatar;
+          }
+        };
+
+        const sendMessage = () => {
+          const messageText = messageInput.value.trim();
+          if (messageText) {
+            const now = new Date();
+            const timestamp = now.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            const newMessage = {
+              text: messageText,
+              type: "sent",
+              timestamp: timestamp,
+            };
+
+            chats[currentChatId].messages.push(newMessage);
+            renderMessages();
+            messageInput.value = "";
+
+            setTimeout(() => {
+              const simulatedReply = {
+                text: "Gracias por tu mensaje. Te responderé pronto.",
+                type: "received",
+                timestamp: new Date().toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }),
+              };
+              chats[currentChatId].messages.push(simulatedReply);
+              renderMessages();
+            }, 1500);
+          }
+        };
+
+        sendMessageBtn.addEventListener("click", sendMessage);
+        messageInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+
+        contactItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            document
+              .querySelector(".active-chat")
+              ?.classList.remove("active-chat");
+            item.classList.add("active-chat");
+
+            currentChatId = item.dataset.chatId;
+            updateChatHeader();
+            renderMessages();
+
+            const unreadIndicator = item.querySelector(".unread-indicator");
+            if (unreadIndicator) {
+              unreadIndicator.textContent = "0";
+              unreadIndicator.classList.add("hidden");
+              chats[currentChatId].unread = 0;
+            }
+          });
+        });
+
+        updateChatHeader();
+        renderMessages();
+
+        contactItems.forEach((item) => {
+          const chatId = item.dataset.chatId;
+          const unreadCount = chats[chatId].unread;
+          const unreadIndicator = item.querySelector(".unread-indicator");
+          if (unreadCount > 0 && unreadIndicator) {
+            unreadIndicator.textContent = unreadCount;
+            unreadIndicator.classList.remove("hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

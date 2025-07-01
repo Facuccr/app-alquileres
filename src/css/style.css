@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: url("../img/nubes-blancas-flotan-infinito-cielo-azul-modernos-edificios-gran-altura-ventanas-que-reflejan-cielo_255755-2792.avif")
+    no-repeat center center fixed;
+  background-size: cover;
+}

@@ -1,0 +1,48 @@
+:root {
+  --color-primary: #3490dc; /* A shade of blue */
+  --color-primary-dark: #2779bd; /* A darker shade of blue */
+  --color-accent: #6574cd; /* A complementary color, e.g., purple-blue */
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* Custom shadow for cards */
+.card.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card.shadow-sm:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Footer styling */
+footer {
+  background-color: #343a40; /* Dark gray for footer */
+  color: #ffffff;
+}
+.navbar {
+  background-color: #01569c;
+}
