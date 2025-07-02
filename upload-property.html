@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subir Propiedad - AlkiFor</title>
+    <link rel="icon" href="src/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="src/css/prop.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Subir Nueva Propiedad</h1>
+      <form id="propertyUploadForm">
+        <section class="section">
+          <h2>Detalles Principales del Alquiler</h2>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="type">Tipo de Propiedad:</label>
+              <select id="type" name="type" required>
+                <option value="">Seleccione un tipo</option>
+                <option value="Departamento">Departamento</option>
+                <option value="Casa">Casa</option>
+                <option value="Terreno">Terreno</option>
+                <option value="Local Comercial">Local Comercial</option>
+                <option value="Quinta">Quinta</option>
+                <option value="Habitación">Habitación</option>
+              </select>
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="price">Precio (USD):</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                placeholder="Ej: 150000"
+                required
+                min="0"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Ubicación de la Propiedad</h2>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="barrio">Barrio:</label>
+              <input
+                type="text"
+                id="barrio"
+                name="barrio"
+                placeholder="Ej: Palermo"
+                required
+              />
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="street-type">Tipo de Calle (opcional):</label>
+              <input
+                type="text"
+                id="street-type"
+                name="streetType"
+                placeholder="Ej: Avenida, Calle, Pasaje"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="city">Ciudad:</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Ej: Ciudad Autónoma de Buenos Aires"
+                required
+              />
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="province">Provincia:</label>
+              <input
+                type="text"
+                id="province"
+                name="province"
+                placeholder="Ej: Buenos Aires"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="zonificacion">Zonificación (opcional):</label>
+              <input
+                type="text"
+                id="zonificacion"
+                name="zonificacion"
+                placeholder="Ej: R2b1"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Información Detallada</h2>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="condition">Condición:</label>
+              <select id="condition" name="condition">
+                <option value="">Seleccione</option>
+                <option value="Nuevo">Nuevo</option>
+                <option value="Excelente">Excelente</option>
+                <option value="Bueno">Bueno</option>
+                <option value="Regular">Regular</option>
+                <option value="A Reciclar">A Reciclar</option>
+              </select>
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="situation">Situación:</label>
+              <select id="situation" name="situation">
+                <option value="">Seleccione</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Reservada">Reservada</option>
+                <option value="Alquilada">Alquilada</option>
+                <option value="Vendida">Vendida</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="antiquity">Antigüedad (años):</label>
+              <input
+                type="number"
+                id="antiquity"
+                name="antiquity"
+                placeholder="Ej: 10"
+                min="0"
+              />
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="surface">Superficie Total (m²):</label>
+              <input
+                type="number"
+                id="surface"
+                name="surface"
+                placeholder="Ej: 200"
+                min="0"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="covered-surface">Superficie Cubierta (m²):</label>
+              <input
+                type="number"
+                id="covered-surface"
+                name="coveredSurface"
+                placeholder="Ej: 150"
+                min="0"
+              />
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="urbanization">Urbanización:</label>
+              <select id="urbanization" name="urbanization">
+                <option value="">Seleccione</option>
+                <option value="General">General</option>
+                <option value="Poca">Poca</option>
+                <option value="Bastante">Bastante</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="security">Seguridad:</label>
+              <select id="security" name="security">
+                <option value="">Seleccione</option>
+                <option value="Baja">Baja</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
+                <option value="Muy Alta">Muy Alta</option>
+              </select>
+            </div>
+            <div class="col-12 form-group">
+              <label for="description">Descripción detallada:</label>
+              <textarea
+                id="description"
+                name="description"
+                rows="5"
+                placeholder="Ingrese una descripción detallada de la propiedad, sus características, puntos fuertes, etc."
+              ></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Ambientes</h2>
+          <div class="checkbox-grid">
+            <label
+              ><input
+                type="checkbox"
+                name="ambiente"
+                value="Baño de servicio"
+              />
+              Baño de Servicio</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Cocina" />
+              Cocina</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Oficina" />
+              Oficina</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Vestidor" />
+              Vestidor</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Living" />
+              Living</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Comedor" />
+              Comedor</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Dormitorio" />
+              Dormitorio</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Baño" />
+              Baño</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Patio" />
+              Patio</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Balcón" />
+              Balcón</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Terraza" />
+              Terraza</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Lavadero" />
+              Lavadero</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Garaje" />
+              Garaje</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="ambiente"
+                value="Dependencia de Servicio"
+              />
+              Dependencia de Servicio</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Quincho" />
+              Quincho</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Jardín" />
+              Jardín</label
+            >
+            <label
+              ><input type="checkbox" name="ambiente" value="Hall" />
+              Hall</label
+            >
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Servicios</h2>
+          <div class="checkbox-grid">
+            <label
+              ><input type="checkbox" name="servicio" value="Agua Corriente" />
+              Agua Corriente</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="servicio"
+                value="Cable en la zona"
+              />
+              Cable en la zona</label
+            >
+            <label
+              ><input type="checkbox" name="servicio" value="Cloaca" />
+              Cloaca</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="servicio"
+                value="Colectivo a Menos 150mts"
+              />
+              Colectivo a Menos 150mts</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="servicio"
+                value="Electricidad Tiene Medidor instalado"
+              />
+              Electricidad (Medidor instalado)</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="servicio"
+                value="Internet disponible en la zona"
+              />
+              Internet disponible en la zona</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="servicio"
+                value="Teléfono en la zona"
+              />
+              Teléfono en la zona</label
+            >
+            <label
+              ><input type="checkbox" name="servicio" value="Gas Natural" /> Gas
+              Natural</label
+            >
+            <label
+              ><input type="checkbox" name="servicio" value="Seguridad 24hs" />
+              Seguridad 24hs</label
+            >
+            <label
+              ><input type="checkbox" name="servicio" value="Ascensor" />
+              Ascensor</label
+            >
+            <label
+              ><input type="checkbox" name="servicio" value="Piscina" />
+              Piscina</label
+            >
+            <label
+              ><input type="checkbox" name="servicio" value="Gimnasio" />
+              Gimnasio</label
+            >
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Multimedia (Fotos o Video)</h2>
+          <div class="form-group">
+            <label for="media-upload">Subir Archivos:</label>
+            <input
+              type="file"
+              id="media-upload"
+              name="media"
+              accept="image/*,video/*"
+              multiple
+            />
+            <p class="help-text">
+              Puedes subir múltiples imágenes y/o un video.
+            </p>
+            <div id="media-preview" class="media-preview"></div>
+          </div>
+        </section>
+
+        <button type="submit" class="submit-btn">Subir Propiedad</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+     <script>
+    document.getElementById('propertyUploadForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe de la forma tradicional y recargue la página
+
+        const formData = new FormData(this); // Crea un objeto FormData con todos los datos del formulario, incluyendo los archivos
+
+        // ----- ¡AQUÍ ES DONDE DEBES ASEGURARTE DE QUE ESTÉ ESTE CÓDIGO! -----
+        fetch('http://localhost:3000/api/properties', { // <--- Esta es la URL de tu backend
+            method: 'POST', // Es un método POST para subir nueva información
+            body: formData  // Envía el FormData directamente (contiene texto y archivos)
+        })
+        .then(response => {
+            // Verifica si la respuesta HTTP es exitosa (código 2xx)
+            if (!response.ok) {
+                // Si hay un error (ej. 400, 500), intenta leer el mensaje de error del backend
+                return response.json().then(err => {
+                    throw new Error(err.message || 'Error desconocido del servidor');
+                });
+            }
+            // Si es exitosa, parsea la respuesta JSON
+            return response.json();
+        })
+        .then(data => {
+            // Maneja la respuesta exitosa del backend
+            console.log('Propiedad subida exitosamente:', data);
+            alert('¡Propiedad subida exitosamente!'); // Muestra un mensaje al usuario
+            this.reset(); // Opcional: Limpia el formulario después del éxito
+            document.getElementById('media-preview').innerHTML = ''; // Limpiar previsualizaciones si las tienes
+            // Opcional: Redirigir al usuario o hacer algo más
+            // window.location.href = 'index.html';
+        })
+        .catch(error => {
+            // Maneja cualquier error que ocurra durante la solicitud (ej. problemas de red, errores del servidor)
+            console.error('Error al subir la propiedad:', error);
+            alert(`Hubo un error al subir la propiedad: ${error.message}`); // Muestra el error al usuario
+        });
+        // ------------------------------------------------------------------
+
+        // La alerta "Formulario de subida de propiedad enviado..." debe ser eliminada
+        // o comentada si ya tienes el bloque fetch.
+        // alert('Formulario de subida de propiedad enviado (¡aún no hay backend!). Revisa la consola para ver los datos.');
+    });
+</script>
+</html>

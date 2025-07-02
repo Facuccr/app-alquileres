@@ -10,6 +10,82 @@
 .text-primary {
   color: var(--color-primary) !important;
 }
+/* Variables CSS para colores personalizados */
+:root {
+  --color-primary: #3490dc; /* Un tono de azul */
+  --color-primary-dark: #2779bd; /* Un tono de azul más oscuro */
+  --color-accent: #6574cd; /* Un color complementario, por ejemplo, azul-púrpura */
+}
+
+/* Estilos para clases de Bootstrap usando las variables */
+.bg-primary {
+  background-color: #01569c !important; /* Usando el color que ya definiste en tu navbar */
+}
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* Sombra personalizada para las tarjetas */
+.card.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card.shadow-sm:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Estilos para el pie de página */
+footer {
+  background-color: #343a40; /* Gris oscuro para el pie de página */
+  color: #ffffff;
+}
+/* Estilo para la barra de navegación */
+.navbar {
+  background-color: #01569c !important; /* Color de la barra de navegación */
+}
+
+/* Asegurar que los botones son siempre visibles (regla importante para depuración) */
+.btn {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Estilos adicionales para los nuevos filtros (opcional, si listings.css no los cubre) */
+.filter-collapse-content {
+  padding-top: 15px;
+}
+
+.form-check {
+  margin-bottom: 5px;
+}
+.form-check-label {
+  font-size: 0.9em; /* Ajuste para que los labels de los checkboxes sean más pequeños */
+}
+/* Estilos para mejorar la visualización de los checkboxes en columnas */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 5px 10px; /* Reducir gap vertical y horizontal */
+}
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);

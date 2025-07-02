@@ -1,165 +1,171 @@
-// --- DATOS DE PROPIEDADES (ESTO PODRÍA VENIR DE UNA API REAL EN EL FUTURO) ---
-const properties = [
-  {
-    id: 1,
-    title: "CASA Moderna con Jardín",
-    description:
-      "Amplia casa de 3 habitaciones con jardín trasero en zona tranquila.",
-    price: 800,
-    type: "Casa",
-    location: "Norte",
-    image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c443a9e9-082b-4399-acef-7100c96253fa.png",
-  },
-  {
-    id: 2,
-    title: "Apartamento Luminoso en Centro",
-    description:
-      "Cómodo apartamento de 2 habitaciones en el corazón de la ciudad, cerca de todo.",
-    price: 500,
-    type: "Apartamento",
-    location: "Centro",
-    image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c443a9e9-082b-4399-acef-7100c96253fa.png",
-  },
-  {
-    id: 3,
-    title: "Habitación Individual para Estudiantes",
-    description:
-      "Habitación luminosa y amueblada, ideal para estudiantes cerca de la universidad.",
-    price: 300,
-    type: "Habitación",
-    location: "Sur",
-    image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c443a9e9-082b-4399-acef-7100c96253fa.png",
-  },
-  {
-    id: 4,
-    title: "Loft Moderno con Vistas",
-    description: "Loft espacioso con grandes ventanales y vistas a la ciudad.",
-    price: 950,
-    type: "Apartamento",
-    location: "Norte",
-    image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c443a9e9-082b-4399-acef-7100c96253fa.png",
-  },
-  {
-    id: 5,
-    title: "Chalet Adosado Familiar",
-    description: "Casa ideal para familias con 4 habitaciones y patio privado.",
-    price: 1200,
-    type: "Casa",
-    location: "Sur",
-    image:
-      "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c443a9e9-082b-4399-acef-7100c96253fa.png",
-  },
-  // Añade más propiedades aquí si lo deseas
-];
+// js/listings.js
 
-// --- FUNCIÓN PARA CREAR UNA TARJETA DE PROPIEDAD ---
-function createPropertyCard(property) {
-  return `
-        <div class="col">
+// Obtener el contenedor donde se mostrarán las propiedades
+const propertyListings = document.getElementById("propertyListings");
+const filterForm = document.getElementById("filterForm");
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+
+// Función principal para obtener y mostrar propiedades
+async function fetchProperties(filters = {}) {
+  let url = "http://localhost:3000/api/properties"; // URL de tu endpoint backend
+
+  const queryParams = new URLSearchParams();
+
+  // Añadir filtros a los parámetros de la URL
+  if (filters.type) {
+    queryParams.append("type", filters.type);
+  }
+  if (filters.priceRange) {
+    queryParams.append("priceRange", filters.priceRange);
+  }
+  if (filters.location) {
+    queryParams.append("location", filters.location);
+  }
+  if (filters.urbanization) {
+    queryParams.append("urbanization", filters.urbanization);
+  }
+  if (filters.security) {
+    queryParams.append("security", filters.security);
+  }
+  if (filters.ambientes && filters.ambientes.length > 0) {
+    filters.ambientes.forEach((ambiente) =>
+      queryParams.append("ambienteFilter", ambiente)
+    );
+  }
+  if (filters.searchTerm) {
+    queryParams.append("searchTerm", filters.searchTerm);
+  }
+
+  // Construir la URL completa con los parámetros de consulta
+  if (queryParams.toString()) {
+    url += `?${queryParams.toString()}`;
+  }
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const properties = await response.json();
+    displayProperties(properties);
+  } catch (error) {
+    console.error("Error fetching properties:", error);
+    propertyListings.innerHTML =
+      '<p class="text-danger">No se pudieron cargar las propiedades. Intenta de nuevo más tarde.</p>';
+  }
+}
+
+// Función para mostrar las propiedades en el HTML
+function displayProperties(properties) {
+  propertyListings.innerHTML = ""; // Limpiar listados existentes
+
+  if (properties.length === 0) {
+    propertyListings.innerHTML =
+      '<p class="text-center text-muted col-12">No se encontraron propiedades que coincidan con los filtros.</p>';
+    return;
+  }
+
+  properties.forEach((property) => {
+    const imageUrl =
+      property.mediaUrls && property.mediaUrls.length > 0
+        ? `http://localhost:3000${property.mediaUrls[0]}`
+        : "https://via.placeholder.com/400x200?text=Imagen+No+Disponible";
+
+    const cardCol = document.createElement("div");
+    cardCol.className = "col";
+    cardCol.innerHTML = `
             <div class="card h-100 shadow-sm border-0">
-                <img src="${property.image}" class="card-img-top" alt="${property.title}" style="object-fit: cover; height: 200px;">
+                <img
+                    src="${imageUrl}"
+                    class="card-img-top"
+                    alt="${property.type} en ${property.barrio}, ${
+      property.city
+    }"
+                    style="object-fit: cover; height: 200px"
+                />
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-primary">${property.title}</h5>
-                    <p class="card-text text-muted">${property.description}</p>
-                    <div class="mt-auto d-flex justify-content-between align-items-center">
-                        <span class="badge bg-success fs-5">$${property.price}/mes</span>
-                        <a href="property-detail.html?id=${property.id}" class="btn btn-outline-primary btn-sm me-2">Ver detalles <i class="fas fa-chevron-right ms-1"></i></a>
-                        <!-- Botón "Contactar" añadido aquí -->
-                        <a href="mensajeria.html" class="btn btn-primary btn-sm">Contactar <i class="fas fa-comment-dots ms-1"></i></a>
+                    <h5 class="card-title text-primary">${property.type} en ${
+      property.barrio
+    }</h5>
+                    <p class="card-text text-muted">
+                        ${property.description || "Sin descripción disponible."}
+                    </p>
+                    <ul class="list-unstyled mt-2 small text-muted">
+                        <li><strong>Ciudad:</strong> ${property.city}</li>
+                        <li><strong>Provincia:</strong> ${
+                          property.province
+                        }</li>
+                        <li><strong>Superficie Cubierta:</strong> ${
+                          property.coveredSurface || "N/A"
+                        } m²</li>
+                        <li><strong>Ambientes:</strong> ${
+                          property.ambientes && property.ambientes.length > 0
+                            ? property.ambientes.join(", ")
+                            : "N/A"
+                        }</li>
+                        <li><strong>Servicios:</strong> ${
+                          property.services && property.services.length > 0
+                            ? property.services.join(", ")
+                            : "N/A"
+                        }</li>
+                        <li><strong>Condición:</strong> ${
+                          property.condition || "N/A"
+                        }</li>
+                        <li><strong>Antigüedad:</strong> ${
+                          property.antiquity || "N/A"
+                        } años</li>
+                    </ul>
+                    <div class="mt-auto d-flex flex-column align-items-start">
+                        <span class="badge bg-success fs-5 mb-2">$${
+                          property.price
+                        }/mes</span>
+                        <a href="property-detail.html?id=${
+                          property.id
+                        }" class="btn btn-primary w-100">
+                            Ver detalles <i class="fas fa-chevron-right ms-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    `;
-}
-
-// --- FUNCIÓN PARA MOSTRAR LAS PROPIEDADES EN EL HTML ---
-function displayProperties(propertiesToDisplay) {
-  const listingsContainer = document.getElementById("propertyListings");
-  listingsContainer.innerHTML = ""; // Limpiar listado actual
-  if (propertiesToDisplay.length === 0) {
-    listingsContainer.innerHTML =
-      '<div class="col-12 text-center text-muted">No se encontraron propiedades que coincidan con tu búsqueda.</div>';
-    return;
-  }
-  propertiesToDisplay.forEach((property) => {
-    listingsContainer.innerHTML += createPropertyCard(property);
+        `;
+    propertyListings.appendChild(cardCol);
   });
 }
 
-// --- LÓGICA DEL BUSCADOR ---
-function performSearchAndFilter() {
-  const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-  const typeFilter = document.getElementById("typeFilter").value;
-  const priceFilter = document.getElementById("priceFilter").value;
-  const locationFilter = document.getElementById("locationFilter").value;
-
-  let filteredProperties = properties.filter((property) => {
-    // Filtro por término de búsqueda (título o descripción)
-    const matchesSearch =
-      property.title.toLowerCase().includes(searchTerm) ||
-      property.description.toLowerCase().includes(searchTerm);
-
-    // Filtro por tipo
-    const matchesType = typeFilter === "" || property.type === typeFilter;
-
-    // Filtro por precio
-    let matchesPrice = true;
-    if (priceFilter === "Menos de $500") {
-      matchesPrice = property.price < 500;
-    } else if (priceFilter === "$500 - $1000") {
-      matchesPrice = property.price >= 500 && property.price <= 1000;
-    } else if (priceFilter === "Más de $1000") {
-      matchesPrice = property.price > 1000;
-    }
-
-    // Filtro por ubicación
-    const matchesLocation =
-      locationFilter === "" || property.location === locationFilter;
-
-    return matchesSearch && matchesType && matchesPrice && matchesLocation;
-  });
-
-  displayProperties(filteredProperties);
-}
-
-// --- EVENT LISTENERS (PARA CONECTAR LA LÓGICA CON EL HTML) ---
+// Event Listeners para filtros y búsqueda
 document.addEventListener("DOMContentLoaded", () => {
-  // Mostrar todas las propiedades al cargar la página
-  displayProperties(properties);
+  fetchProperties(); // Cargar propiedades al cargar la página por primera vez
 
-  // Conectar el botón de búsqueda
-  const searchButton = document.getElementById("searchButton");
-  if (searchButton) {
-    searchButton.addEventListener("click", performSearchAndFilter);
-  }
+  filterForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  // Conectar el input de búsqueda para buscar al presionar Enter
-  const searchInput = document.getElementById("searchInput");
-  if (searchInput) {
-    searchInput.addEventListener("keypress", (event) => {
-      if (event.key === "Enter") {
-        performSearchAndFilter();
+    const formData = new FormData(filterForm);
+    const filters = {};
+    for (let [key, value] of formData.entries()) {
+      if (key === "ambienteFilter") {
+        if (!filters[key]) {
+          filters[key] = [];
+        }
+        filters[key].push(value);
+      } else {
+        filters[key] = value;
       }
-    });
-  }
+    }
+    console.log("Filtros aplicados:", filters);
+    fetchProperties(filters);
+  });
 
-  // Conectar el formulario de filtros (cuando cambian los selectores)
-  const filterForm = document.getElementById("filterForm");
-  if (filterForm) {
-    // Escucha los cambios en cualquier select del formulario de filtros
-    filterForm.querySelectorAll("select").forEach((selectElement) => {
-      selectElement.addEventListener("change", performSearchAndFilter);
-    });
+  searchButton.addEventListener("click", () => {
+    const searchTerm = searchInput.value.trim();
+    fetchProperties({ searchTerm: searchTerm });
+  });
 
-    // Previene el envío del formulario (que recargaría la página)
-    filterForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // Detiene el comportamiento predeterminado del formulario
-      performSearchAndFilter();
-    });
-  }
+  searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const searchTerm = searchInput.value.trim();
+      fetchProperties({ searchTerm: searchTerm });
+    }
+  });
 });

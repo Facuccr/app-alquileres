@@ -1,0 +1,221 @@
+/* styles.css */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  font-weight: 600;
+}
+
+h2 {
+  color: #555;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.6em;
+  font-weight: 500;
+}
+
+.section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #444;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: calc(100% - 20px); /* Ajuste para el padding */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.checkbox-grid {
+  /* Ajuste de nombre de clase para evitar conflicto */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.checkbox-grid label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 0; /* Eliminar margen inferior de la etiqueta para el layout de grid */
+  font-weight: normal;
+  color: #666;
+}
+
+.checkbox-grid input[type="checkbox"] {
+  margin-right: 8px;
+  width: auto; /* Anula el width: 100% */
+}
+
+input[type="file"] {
+  padding: 10px 0;
+  border: none;
+  background-color: transparent;
+  width: auto;
+}
+
+.help-text {
+  font-size: 0.85em;
+  color: #777;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.media-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  border: 1px dashed #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  min-height: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+}
+
+.media-preview img,
+.media-preview video {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 30px;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  background-color: #1e7e34;
+  transform: translateY(0);
+}
+
+/* Clases de Bootstrap personalizadas para el layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px; /* Compensar padding de col */
+  margin-right: -15px; /* Compensar padding de col */
+}
+
+.row > .col-md-6,
+.row > .col-12 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  }
+
+  .row > .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
