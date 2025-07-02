@@ -3,265 +3,328 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlkiFor - Tu Hogar Universitario Ideal</title>
+    <title>AlkiFor - Tu Nuevo Comienzo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
     <link rel="stylesheet" href="src/css/index.css" />
   </head>
-  <body class="bg-gray-50">
-    <nav class="bg-white shadow-sm py-4 navbar-animated">
+  <body class="bg-light-gray text-text-color">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg py-4 fixed w-full z-50">
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center"
       >
-        <a href="#" class="text-2xl font-bold text-primary-custom">AlkiFor</a>
-        <div class="flex items-center space-x-4">
+        <a href="#" class="text-3xl font-extrabold text-primary-blue"
+          >AlkiFor</a
+        >
+        <div class="flex items-center space-x-6">
           <a
-            href="listings.html"
-            class="text-gray-600 hover:text-primary-custom font-medium nav-link-hover"
+            href="listing.invitado.html"
+            class="text-gray-700 hover:text-primary-blue font-medium animated-underline"
             >Propiedades</a
           >
+
           <a
             href="login.html"
-            class="text-gray-600 hover:text-primary-custom font-medium nav-link-hover"
+            class="text-gray-700 hover:text-primary-blue font-medium animated-underline"
             >Iniciar Sesión</a
           >
           <a
             href="register.html"
-            class="bg-primary-custom text-white px-4 py-2 rounded-lg hover:bg-primary-dark-custom transition duration-300 btn-scale"
-            >Regístrate</a
+            class="bg-primary-blue text-white px-6 py-2 rounded-full hover:bg-dark-blue transition duration-300 transform hover:scale-105 shadow-md"
+            >Registrate</a
           >
         </div>
       </div>
     </nav>
 
-    <header
-      class="gradient-bg text-white py-20 md:py-32 text-center relative overflow-hidden rounded-b-3xl shadow-lg-custom hero-section"
-    >
-      <div class="absolute inset-0 opacity-10 pattern-bg">
-        <svg
-          class="w-full h-full"
-          fill="currentColor"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <circle cx="25" cy="25" r="15" opacity=".05"></circle>
-          <circle cx="75" cy="75" r="15" opacity=".05"></circle>
-          <rect x="10" y="60" width="20" height="20" opacity=".03"></rect>
-          <rect x="70" y="10" width="20" height="20" opacity=".03"></rect>
-        </svg>
-      </div>
-      <div class="relative z-10 max-w-4xl mx-auto px-4 hero-content">
+    <!-- Hero Section con Imagen de Fondo -->
+    <header>
+      <div class="hero-overlay"></div>
+      <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
         <h1
-          class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-shadow"
+          class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 fade-in"
         >
-          Encuentra tu Hogar Ideal
+          Encontrá tu hogar ideal
         </h1>
-        <p class="text-lg md:text-xl mb-8 opacity-90">
-          AlkiFor simplifica la búsqueda de alquileres seguros y adecuados para
-          estudiantes en nuevas ciudades.
+        <p class="text-xl md:text-2xl mb-10 opacity-90 fade-in delay-1">
+          Descubrí casas y departamentos que se ajusten a vos y a tus
+          preferencias
         </p>
         <a
-          href="listings.html"
-          class="bg-white text-primary-custom px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-md btn-slide-right"
+          href="listing.invitado.html"
+          class="text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-orange-600 transition duration-300 shadow-xl inline-flex items-center fade-in delay-2"
         >
-          Explorar Propiedades <span class="ml-2">&rarr;</span>
+          Explorar Propiedades
+          <i class="fas fa-arrow-right ml-3"></i>
         </a>
       </div>
     </header>
 
-    <section class="py-16 bg-white problem-solution-section">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-          ¿Por qué AlkiFor?
-        </h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-          Sabemos que encontrar un lugar seguro y adecuado para vivir en una
-          nueva ciudad universitaria puede ser un desafío. AlkiFor está aquí
-          para cambiar eso.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div class="text-left content-left">
-            <h3 class="text-2xl font-semibold text-primary-custom mb-4">
-              El Problema
-            </h3>
-            <ul class="list-disc list-inside text-gray-700 space-y-3 text-lg">
-              <li>Falta de información clara y confiable.</li>
-              <li>Intermediarios poco confiables y estafas.</li>
-              <li>Imposibilidad de visitar la propiedad antes de llegar.</li>
-              <li>
-                Dificultad para encontrar opciones dentro del presupuesto.
-              </li>
-            </ul>
-          </div>
-          <div class="text-left content-right">
-            <h3 class="text-2xl font-semibold text-primary-custom mb-4">
-              Nuestra Solución
-            </h3>
-            <ul class="list-disc list-inside text-gray-700 space-y-3 text-lg">
-              <li>Plataforma con perfiles verificados y transparencia.</li>
-              <li>Filtros avanzados para búsquedas precisas.</li>
-              <li>Visitas virtuales para explorar desde casa.</li>
-              <li>Contacto directo con dueños e inmobiliarias confiables.</li>
-              <li>Sistema de pagos y calendario de vencimientos.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-gray-100 features-section">
+    <!-- Sección de Propiedades Destacadas (con imágenes) -->
+    <section id="propiedades">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
-          class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12"
+          class="text-4xl font-bold text-center text-primary-blue mb-16 fade-in delay-1"
         >
-          Características que te encantarán
+          Nuestras Propiedades Destacadas
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Tarjeta de Propiedad 1 -->
           <div
-            class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 feature-card"
+            class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in delay-2"
           >
-            <div class="text-accent-custom text-5xl mb-4 icon-bounce">
-              <i class="fas fa-search-location"></i>
+            <img
+              src="src/img/index/index.prop1.jpeg"
+              alt="Casa Moderna"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-text-color mb-2">
+                MONOAMBIENTE A ESTRENAR
+              </h3>
+              <p class="text-gray-600 mb-4">
+                MONOAMBIENTE A ESTRENAR DE 30 M2 (INCLUIDO LUZ - AGUA - TASA)
+              </p>
+              <div class="flex items-center text-gray-500 text-sm mb-4">
+                <span class="mr-4"
+                  ><i class="fas fa-bed mr-1"></i> 1 Habitacion(es)</span
+                >
+                <span class="mr-4"
+                  ><i class="fas fa-bath mr-1"></i> 1 Baños</span
+                >
+                <span><i class="fas fa-ruler-combined mr-1"></i> 30m²</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-primary-blue text-2xl font-bold"
+                  >$120,000</span
+                >
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
-              Búsqueda Inteligente
+          </div>
+
+          <!-- Tarjeta de Propiedad 2 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in delay-3"
+          >
+            <img
+              src="src/img/index/index.prop2.jpg"
+              alt="Apartamento con Vista"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-text-color mb-2">
+                DUPLEX de una habitación
+              </h3>
+              <p class="text-gray-600 mb-4">
+                DUPLEX de una habitación de 50m2 A ESTRENAR. SERVICIOS INCLUIDOS
+                (LUZ, AGUA, TASA)
+              </p>
+              <div class="flex items-center text-gray-500 text-sm mb-4">
+                <span class="mr-4"
+                  ><i class="fas fa-bed mr-1"></i> 1 Habitacion(es)</span
+                >
+                <span class="mr-4"
+                  ><i class="fas fa-bath mr-1"></i> 1 Baño</span
+                >
+                <span><i class="fas fa-ruler-combined mr-1"></i> 50m²</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-primary-blue text-2xl font-bold"
+                  >$180,000</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Propiedad 3 -->
+          <div
+            class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect fade-in delay-4"
+          >
+            <img
+              src="src/img/index/index.prop3.jpeg"
+              alt="Villa de Lujo"
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-text-color mb-2">
+                Departamento
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Dormitorio con vestidor- pequeño lavadero- baño con agua
+                caliente - cocina y pequeño comedor
+              </p>
+              <div class="flex items-center text-gray-500 text-sm mb-4">
+                <span class="mr-4"
+                  ><i class="fas fa-bed mr-1"></i> 2 Habitacion (es)</span
+                >
+                <span class="mr-4"
+                  ><i class="fas fa-bath mr-1"></i> 1 Baños</span
+                >
+                <span><i class="fas fa-ruler-combined mr-1"></i> 100m²</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-primary-blue text-2xl font-bold"
+                  >$350,000</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-16 fade-in delay-5">
+          <a
+            href="listing.invitado.html"
+            class="bg-accent-color text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition duration-300 shadow-md"
+          >
+            Ver Todas las Propiedades
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Servicios (con iconos y diseño limpio) -->
+    <section id="servicios" class="py-20 bg-light-gray">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold text-primary-blue mb-16 fade-in delay-1">
+          Nuestros Servicios
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 card-hover-effect fade-in delay-2"
+          >
+            <div
+              class="text-primary-blue text-6xl mb-6 flex justify-center items-center"
+            >
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-text-color mb-3">
+              Búsqueda Personalizada
             </h3>
             <p class="text-gray-600">
-              Encuentra propiedades por ubicación, precio, servicios y cercanía
-              a universidades.
+              Encuentra la propiedad perfecta con nuestros filtros avanzados y
+              asesoramiento experto.
             </p>
           </div>
           <div
-            class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 feature-card"
+            class="bg-white rounded-xl shadow-lg p-8 card-hover-effect fade-in delay-3"
           >
-            <div class="text-accent-custom text-5xl mb-4 icon-bounce">
-              <i class="fas fa-vr-cardboard"></i>
+            <div
+              class="text-primary-blue text-6xl mb-6 flex justify-center items-center"
+            >
+              <i class="fas fa-handshake"></i>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
-              Visitas Virtuales
+            <h3 class="text-2xl font-semibold text-text-color mb-3">
+              Asesoría Legal y Financiera
             </h3>
             <p class="text-gray-600">
-              Explora tu futuro hogar desde la comodidad de tu ciudad de origen.
+              Te acompañamos en todo el proceso, garantizando transacciones
+              seguras y transparentes.
             </p>
           </div>
           <div
-            class="bg-white rounded-lg shadow-md p-6 text-center transform hover:scale-105 transition duration-300 feature-card"
+            class="bg-white rounded-xl shadow-lg p-8 card-hover-effect fade-in delay-4"
           >
-            <div class="text-accent-custom text-5xl mb-4 icon-bounce">
-              <i class="fas fa-shield-alt"></i>
+            <div
+              class="text-primary-blue text-6xl mb-6 flex justify-center items-center"
+            >
+              <i class="fas fa-key"></i>
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
-              Perfiles Verificados
+            <h3 class="text-2xl font-semibold text-text-color mb-3">
+              Administración de Propiedades
             </h3>
             <p class="text-gray-600">
-              Conecta con dueños e inmobiliarias de confianza, con perfiles
-              validados.
+              Ofrecemos servicios completos de gestión para propietarios,
+              maximizando tu inversión.
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    ---
+
+    <!-- Call to Action Final -->
     <section
-      class="py-16 gradient-bg text-white text-center rounded-t-3xl shadow-lg-custom cta-section"
+      id="contacto"
+      class="py-20 bg-gradient-to-r from-primary-blue to-dark-blue text-white text-center"
     >
       <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-shadow">
-          ¿Listo para encontrar tu próximo hogar?
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 fade-in delay-1">
+          ¿Listo para dar el siguiente paso?
         </h2>
-        <p class="text-lg md:text-xl mb-8 opacity-90">
-          Miles de estudiantes ya confían en AlkiFor para su búsqueda de
-          alquiler. ¡Únete a la comunidad!
+        <p class="text-lg md:text-xl mb-10 opacity-90 fade-in delay-2">
+          ¡Registrate hoy y descubrí lo que ofrecemos para vos!
         </p>
         <a
           href="register.html"
-          class="bg-white text-primary-custom px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-md btn-pulse"
+          class="text-primary-blue px-10 py-4 rounded-full text-xl font-bold hover:bg-gray-100 transition duration-300 shadow-xl inline-flex items-center fade-in delay-3"
         >
-          Regístrate Gratis Hoy <span class="ml-2">&rarr;</span>
+          Registrate Ahora
+          <i class="fas fa-envelope ml-3"></i>
         </a>
       </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-10 footer-animated">
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
       <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left"
       >
         <div>
-          <h3 class="text-xl font-bold mb-4">AlkiFor</h3>
-          <p class="text-gray-400">
-            Tu plataforma confiable para encontrar alquileres universitarios.
+          <h3 class="text-2xl font-bold mb-4 text-primary-blue">AlkiFor</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Tu aliado confiable en la búsqueda y gestión de propiedades. Hacemos
+            realidad tus sueños inmobiliarios.
           </p>
         </div>
         <div>
-          <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
-          <ul class="space-y-2">
+          <h3 class="text-xl font-bold mb-4">Explorar</h3>
+          <ul class="space-y-3">
             <li>
               <a
-                href="listings.html"
-                class="text-gray-400 hover:text-white transition duration-300"
-                >Propiedades</a
-              >
-            </li>
-            <li>
-              <a
-                href="login.html"
-                class="text-gray-400 hover:text-white transition duration-300"
-                >Iniciar Sesión</a
-              >
-            </li>
-            <li>
-              <a
-                href="register.html"
-                class="text-gray-400 hover:text-white transition duration-300"
-                >Regístrate</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition duration-300"
-                >Términos y Condiciones</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition duration-300"
-                >Política de Privacidad</a
+                href="#servicios"
+                class="text-gray-400 hover:text-primary-blue transition duration-300 animated-underline"
+                >Nuestros Servicios</a
               >
             </li>
           </ul>
         </div>
         <div>
-          <h3 class="text-xl font-bold mb-4">Contacto</h3>
-          <p class="text-gray-400">Email: info@alkifor.com</p>
-          <p class="text-gray-400">Teléfono: +54 9 11 1234 5678</p>
-          <div class="flex justify-center md:justify-start space-x-4 mt-4">
+          <h3 class="text-xl font-bold mb-4">Síguenos</h3>
+          <div class="flex justify-center md:justify-start space-x-6 mt-4">
             <a
               href="#"
-              class="text-gray-400 hover:text-white text-2xl transition duration-300"
+              class="text-gray-400 hover:text-primary-blue text-3xl transition duration-300 transform hover:scale-110"
             >
-              <i class="fab fa-facebook"></i>
+              <i class="fab fa-facebook-f"></i>
             </a>
             <a
               href="#"
-              class="text-gray-400 hover:text-white text-2xl transition duration-300"
+              class="text-gray-400 hover:text-primary-blue text-3xl transition duration-300 transform hover:scale-110"
             >
               <i class="fab fa-instagram"></i>
             </a>
             <a
               href="#"
-              class="text-gray-400 hover:text-white text-2xl transition duration-300"
+              class="text-gray-400 hover:text-primary-blue text-3xl transition duration-300 transform hover:scale-110"
             >
               <i class="fab fa-twitter"></i>
             </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-primary-blue text-3xl transition duration-300 transform hover:scale-110"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
           </div>
+          <p class="text-gray-400 mt-6">Email: info@inmohogar.com</p>
+          <p class="text-gray-400">Teléfono: +54 9 11 9876 5432</p>
         </div>
       </div>
-      <div class="text-center text-gray-500 mt-8 border-t border-gray-700 pt-6">
+      <div
+        class="text-center text-gray-500 mt-12 border-t border-gray-700 pt-8"
+      >
         © 2025 AlkiFor. Todos los derechos reservados.
       </div>
     </footer>

@@ -1,8 +1,9 @@
 /* Custom Tailwind Colors (from what would be style.css) */
 :root {
-  --color-primary: #3490dc; /* A shade of blue */
-  --color-primary-dark: #2779bd; /* A darker shade of blue */
-  --color-accent: #6574cd; /* A complementary color, e.g., purple-blue */
+  --color-primary: #000000; /* Negro */
+  --color-primary-dark: #333333; /* Gris oscuro para elementos primarios */
+  --color-accent: #ffd700; /* Dorado para el efecto de hover */
+  --color-light: #ffffff; /* Blanco */
 }
 
 .bg-primary-custom {
@@ -15,10 +16,11 @@
   border-color: var(--color-primary);
 }
 .focus\:ring-primary-custom:focus {
-  --tw-ring-color: var(--color-primary);
+  --tw-ring-color: var(--color-accent); /* Anillo dorado al enfocar */
 }
 .hover\:bg-primary-dark-custom:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-accent); /* Fondo dorado al pasar el mouse */
+  color: var(--color-primary); /* Texto negro en hover para contraste */
 }
 .bg-primary-dark-custom {
   background-color: var(--color-primary-dark);
@@ -33,7 +35,7 @@
 /* Custom Shadow */
 .shadow-lg-custom {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 8px rgba(52, 144, 220, 0.1);
+    0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 8px rgba(0, 0, 0, 0.1); /* Sombra con el color primario (negro) */
 }
 
 /* Text Shadow for Header */
@@ -191,7 +193,7 @@ body::before {
   left: 0;
   width: 150px;
   height: 150px;
-  background-color: var(--color-accent);
+  background-color: var(--color-accent); /* Dorado */
   opacity: 0.05;
   border-bottom-right-radius: 100%;
   filter: blur(60px);
@@ -206,7 +208,7 @@ body::after {
   right: 0;
   width: 200px;
   height: 200px;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary); /* Negro */
   opacity: 0.05;
   border-top-left-radius: 100%;
   filter: blur(70px);
@@ -218,15 +220,15 @@ body::after {
 input:invalid:not(:placeholder-shown),
 select:invalid:not(:placeholder-shown),
 textarea:invalid:not(:placeholder-shown) {
-  border-color: #ef4444; /* Rojo para campos inválidos */
-  box-shadow: 0 0 0 1px #ef4444;
+  border-color: #ffd700; /* Dorado para campos inválidos */
+  box-shadow: 0 0 0 1px #ffd700;
 }
 
 input:focus:invalid,
 select:focus:invalid,
 textarea:focus:invalid {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
+  border-color: #ffd700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.4); /* Sombra dorada al enfocar y ser inválido */
 }
 
 /* Ocultar el feedback de validación por defecto */

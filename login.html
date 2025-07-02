@@ -4,18 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AlkiFor - Inicio de Sesión</title>
-    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <!-- CSS Personalizado -->
     <link rel="stylesheet" href="src/css/style.css" />
+    <style>
+      /* Variables CSS para colores personalizados (repetidas aquí para asegurar la prioridad) */
+      :root {
+        --color-primary: #000000; /* Negro */
+        --color-primary-dark: #333333; /* Gris oscuro para elementos primarios */
+        --color-accent: #ffd700; /* Dorado para el efecto de hover */
+        --color-light: #ffffff; /* Blanco */
+      }
+
+      /* Estilos para clases de Bootstrap usando las variables */
+      .bg-primary {
+        background-color: var(--color-primary) !important;
+      }
+      .text-primary {
+        color: var(--color-primary) !important;
+      }
+      .btn-primary {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-light); /* Texto blanco para botones primarios */
+      }
+      .btn-primary:hover {
+        background-color: var(--color-accent);
+        border-color: var(--color-accent);
+        color: var(--color-primary); /* Texto negro en hover para contraste */
+      }
+      .btn-outline-primary {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+      .btn-outline-primary:hover {
+        background-color: var(--color-accent);
+        color: var(--color-primary);
+        border-color: var(--color-accent);
+      }
+      .btn-light {
+        background-color: var(--color-light);
+        border-color: var(--color-light);
+        color: var(--color-primary);
+      }
+      .btn-light:hover {
+        background-color: var(--color-accent);
+        border-color: var(--color-accent);
+        color: var(--color-primary);
+      }
+
+      /* Estilos para el texto del modal */
+      .modal-header .btn-close-white {
+        filter: invert(1) grayscale(100%) brightness(200%); /* Hace que la 'x' sea blanca en fondos oscuros */
+      }
+
+      /* Sombra personalizada para las tarjetas */
+      .card.shadow-lg {
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+      }
+
+      /* Asegurar que los botones son siempre visibles */
+      .btn {
+        display: inline-flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      /* Estilos de validación personalizados */
+      input:invalid:not(:placeholder-shown),
+      select:invalid:not(:placeholder-shown),
+      textarea:invalid:not(:placeholder-shown) {
+        border-color: var(--color-accent); /* Dorado para campos inválidos */
+        box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25); /* Sombra dorada suave */
+      }
+
+      input:focus:invalid,
+      select:focus:invalid,
+      textarea:focus:invalid {
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.4);
+      }
+    </style>
   </head>
   <body class="bg-light">
     <div class="container">
@@ -26,7 +101,6 @@
               <h3 class="text-center mb-0">Inicio de Sesión</h3>
             </div>
             <div class="card-body p-4">
-              <!-- MODIFICACIÓN AQUÍ: ELIMINAR onsubmit -->
               <form id="loginForm" novalidate>
                 <div class="mb-3">
                   <label for="loginEmail" class="form-label"
@@ -53,18 +127,7 @@
                     id="loginPassword"
                     required
                     minlength="8"
-                    <!--
-                    Añadimos
-                    minlength
-                    para
-                    una
-                    validación
-                    básica
-                    de
-                    longitud
-                    --
                   />
-
                   <div class="invalid-feedback">
                     Por favor ingrese su contraseña (mínimo 8 caracteres)
                   </div>
@@ -85,14 +148,11 @@
                   <a href="#" class="text-primary">¿Olvidaste tu contraseña?</a>
                 </div>
 
-                <!-- Botón de login -->
                 <button type="submit" class="btn btn-primary py-2 w-100">
-                  <!-- Añadimos w-100 para que ocupe todo el ancho -->
-                  <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                  <i class="fas"></i> Iniciar Sesión
                 </button>
               </form>
 
-              <!-- Enlace a registro -->
               <div class="mt-3 text-center">
                 <p class="mb-0">
                   ¿No tienes una cuenta?
@@ -105,9 +165,6 @@
       </div>
     </div>
 
-    <!-- El modal de verificación no es necesario en la página de login,
-         pero lo dejaremos por ahora si lo estás usando para algo más.
-         Si solo es para registro, puedes eliminarlo de aquí. -->
     <div
       class="modal fade"
       id="verificationModal"
@@ -158,9 +215,7 @@
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JavaScript Modular -->
     <script type="module" src="js/login.js"></script>
   </body>
 </html>
